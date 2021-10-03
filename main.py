@@ -99,20 +99,20 @@ def gcd(a, b):
 
 def water_volume(island):
     volume = 0
-    s = []  # (0: position, 1: height)
+    s = []  # stack => (0: position, 1: height)
     for i, height in enumerate(island):
         while s and s[-1][1] <= height:
             if len(s) > 1:
                 pool_height = min(height, s[-2][1])
                 volume += (pool_height - s[-1][1]) * (i - s[-2][0] - 1)
-            s = s[:-1]  # i dont want to use an actual stack because i'm too lazy and high to look it up right now
+            s.pop()
         s.append((i, height))
     return volume
 
 
 if __name__ == '__main__':
     arr = [-1, 0, -1, 0, -1, 0, -1]
-    arr = [1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2]
+    arr = [1, 3, 2, 4, 1, 3, 1, 4, 100, 2, 2, 1, 4, 2, 2]
     print (water_volume(arr))
     pass
 
