@@ -97,16 +97,6 @@ def gcd(a, b):
     r = a - b * q
     return gcd(b, r)
 
-#
-# def wv2(island):
-#     while len(island) > 1 and island[0] < island[1]:
-#         island = island[1:]
-#     while len(island) > 1 and island[-1] < island[-2]:
-#         island = island[:-1]
-#
-#     m = island[0]
-#     la
-
 def water_volume(island):
     volume = 0
     s = []  # (0: position, 1: height)
