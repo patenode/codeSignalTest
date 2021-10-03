@@ -97,6 +97,15 @@ def gcd(a, b):
     r = a - b * q
     return gcd(b, r)
 
+#
+# def wv2(island):
+#     while len(island) > 1 and island[0] < island[1]:
+#         island = island[1:]
+#     while len(island) > 1 and island[-1] < island[-2]:
+#         island = island[:-1]
+#
+#     m = island[0]
+#     la
 
 def water_volume(island):
     # just skip the beginning slope, there are more elegant ways to do this, probably
@@ -106,24 +115,19 @@ def water_volume(island):
     volume = 0
     s = []  # (0: position, 1: height)
     for i, height in enumerate(island):
-        while s and s[-1][1] < height:
-            volume += (height - s[-1][1]) * (i - s[-2][0] - 1)
+        while s and s[-1][1] <= height:
+            if len(s) > 1:
+                pool_height = min(height, s[-2][1])
+                volume += (pool_height - s[-1][1]) * (i - s[-2][0] - 1)
             s = s[:-1]  # i dont want to use an actual stack because i'm too lazy and high to look it up right now
-        if not s or s[-1][1] != height:
-            # dont repeat the same height,
-            # we only need to know the position of the first one at this height to get the rectangle
-            s.append((i, height))
+        s.append((i, height))
     return volume
 
 
 if __name__ == '__main__':
-    # with open('C:\\Users\\nickp\\Downloads\\test-15.json') as json_file:
-    #   pass
-    # print(stringPermutations("AB"))
-    arr = [-1, 0, -2, -1, -1, 0, -1]
-
+    arr = [-1, 0, -1, 0, -1, 0, -1]
+    # arr = [1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2]
     print (water_volume(arr))
-    # print (gcd(-8, 5))
     pass
 
 
