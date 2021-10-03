@@ -108,10 +108,6 @@ def gcd(a, b):
 #     la
 
 def water_volume(island):
-    # just skip the beginning slope, there are more elegant ways to do this, probably
-    while len(island) > 1 and island[0] < island[1]:
-        island = island[1:]
-
     volume = 0
     s = []  # (0: position, 1: height)
     for i, height in enumerate(island):
@@ -126,7 +122,7 @@ def water_volume(island):
 
 if __name__ == '__main__':
     arr = [-1, 0, -1, 0, -1, 0, -1]
-    # arr = [1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2]
+    arr = [1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2]
     print (water_volume(arr))
     pass
 
